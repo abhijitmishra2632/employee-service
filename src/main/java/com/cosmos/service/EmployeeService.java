@@ -3,6 +3,7 @@ package com.cosmos.service;
 import com.cosmos.model.Employee;
 import com.cosmos.pojo.Employees;
 import com.cosmos.repository.EmployeeRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@Slf4j
 public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -36,5 +38,12 @@ public class EmployeeService {
 
     public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);
+    }
+
+    public Employees getEmployeeByDepartmentId(Long deptId) {
+        log.info("getEmployeeByDepartmentId called for"+deptId);
+        Employees employees = new Employees();
+        employees.setEmployeeList(employeeRepository.findByDeptId(deptId));
+        return employees;
     }
 }

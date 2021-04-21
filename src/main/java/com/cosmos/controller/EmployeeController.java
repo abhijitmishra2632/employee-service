@@ -23,6 +23,10 @@ public class EmployeeController {
     public Employee saveDummyEmployee(){
         return employeeService.saveDummyEmployee();
     }
+    @GetMapping("/filterdept/{deptId}")
+    public Employees getEmployeeByDepartmentId(@PathVariable Long deptId){
+        return employeeService.getEmployeeByDepartmentId(deptId);
+    }
     @PostMapping
     public Employee saveEmployee(@RequestBody Employee employee){
         return employeeService.saveEmployee(employee);
